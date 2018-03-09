@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
 
-import commons
+import cujoko_commons
 
 setup(
     name='cujoko_commons',
 
-    version=commons.__version__,
+    version=cujoko_commons.__version__,
 
     description='Commons',
 
-    url='https://github.com/Cujoko/commons',
+    url='https://github.com/Cujoko/cujoko-commons',
 
     author='Cujoko',
     author_email='cujoko@gmail.com',
@@ -33,7 +33,7 @@ setup(
         'Topic :: Utilities'
     ],
 
-    keywords='commons',
+    keywords='cujoko-commons',
 
     install_requires=[
         'appdirs',
@@ -41,5 +41,5 @@ setup(
         'yodl'
     ],
 
-    py_modules=['commons']
+    py_modules=['cujoko-commons']
 )
