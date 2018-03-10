@@ -33,6 +33,10 @@ def get_settings(app_name: str, app_author: str, file_name: str = 'settings.yaml
     return settings
 
 
+class OrderedDictMergeException(Exception):
+    pass
+
+
 def merge(a: OrderedDict, b: OrderedDict, path: List[str]=None) -> OrderedDict:
     if path is None:
         path = []
@@ -78,7 +82,3 @@ def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -
                         mtime = file_stat_result.st_mtime
 
         return mtime
-
-
-class OrderedDictMergeException(Exception):
-    pass
