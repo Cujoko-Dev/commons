@@ -17,10 +17,21 @@ class SettingsException(Exception):
     pass
 
 
-def get_settings(app_name: str, app_author: str, file_name: str = 'settings.yaml') -> OrderedDict:
+def get_settings(file_name: str = 'settings.yaml', **kwargs) -> OrderedDict:
     # Settings
     settings_file_path = Path(file_name)
     if not settings_file_path.is_file():
+        app_name = None
+        if 'app_name' in kwargs:
+            app_name = kwargs['app_name']
+
+        if app_name is None:
+            raise AttributeError('Argument \'app_name\' does not exist!')
+
+        app_author = None
+        if 'app_author' in kwargs:
+            app_author = kwargs['app_author']
+
         settings_file_path = Path(user_data_dir(app_name, app_author, roaming=True)) / settings_file_path.name
         if not settings_file_path.is_file():
             settings_file_path = Path(site_data_dir(app_name, app_author)) / settings_file_path.name
@@ -37,7 +48,7 @@ class OrderedDictMergeException(Exception):
     pass
 
 
-def merge(a: OrderedDict, b: OrderedDict, path: List[str]=None) -> OrderedDict:
+def merge(a: OrderedDict, b: OrderedDict, path: List[str] = None) -> OrderedDict:
     if path is None:
         path = []
 
