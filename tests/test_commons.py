@@ -17,7 +17,7 @@ class MainTestCase(unittest.TestCase):
             get_settings('bla.yaml')
 
     def test_get_settings_3(self):
-        get_settings('data/settings.yaml')
+        self.assertIsInstance(get_settings('data/settings.yaml'), OrderedDict)
 
     def test_merge_1(self):
         a = OrderedDict()
