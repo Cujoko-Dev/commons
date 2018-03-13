@@ -57,10 +57,18 @@ class MainTestCase(unittest.TestCase):
 
             self.assertTrue(Path(temp_dir_name,  'test.txt').is_file())
 
-    def test_write_to_zip(self):
+    def test_write_to_zip_1(self):
         with tempfile.TemporaryDirectory() as temp_dir_name:
             temp_dir_path = Path(temp_dir_name)
 
-            write_to_zip(temp_dir_path / 'test.zip', Path('data/text.txt'))
+            write_to_zip(temp_dir_path / 'test.zip', Path('data/test.txt'))
+
+            self.assertTrue((temp_dir_path / 'test.zip').is_file())
+
+    def test_write_to_zip_2(self):
+        with tempfile.TemporaryDirectory() as temp_dir_name:
+            temp_dir_path = Path(temp_dir_name)
+
+            write_to_zip(temp_dir_path / 'test.zip', Path('data/test'))
 
             self.assertTrue((temp_dir_path / 'test.zip').is_file())
