@@ -10,7 +10,7 @@ from appdirs import site_data_dir, user_data_dir
 import yaml
 import yodl
 
-__version__ = '1.1.0'
+__version__ = '1.2.0'
 
 
 class SettingsException(Exception):
