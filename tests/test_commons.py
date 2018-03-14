@@ -17,7 +17,7 @@ class MainTestCase(unittest.TestCase):
             get_settings('bla.yaml')
 
     def test_get_settings_3(self):
-        self.assertIsInstance(get_settings('data/settings.yaml'), OrderedDict)
+        self.assertIsInstance(get_settings('tests/data/settings.yaml'), OrderedDict)
 
     def test_merge_1(self):
         a = OrderedDict()
@@ -53,15 +53,15 @@ class MainTestCase(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir_name:
             temp_dir_path = Path(temp_dir_name)
 
-            extract_from_zip(Path('data/test.zip'), temp_dir_path)
+            extract_from_zip(Path('tests/data/test.zip'), temp_dir_path)
 
-            self.assertTrue(Path(temp_dir_name,  'test.txt').is_file())
+            self.assertTrue(Path(temp_dir_name, 'test.txt').is_file())
 
     def test_write_to_zip_1(self):
         with tempfile.TemporaryDirectory() as temp_dir_name:
             temp_dir_path = Path(temp_dir_name)
 
-            write_to_zip(temp_dir_path / 'test.zip', Path('data/test.txt'))
+            write_to_zip(temp_dir_path / 'test.zip', Path('tests/data/test.txt'))
 
             self.assertTrue((temp_dir_path / 'test.zip').is_file())
 
@@ -69,6 +69,6 @@ class MainTestCase(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir_name:
             temp_dir_path = Path(temp_dir_name)
 
-            write_to_zip(temp_dir_path / 'test.zip', Path('data/test'))
+            write_to_zip(temp_dir_path / 'test.zip', Path('tests/data/test'))
 
             self.assertTrue((temp_dir_path / 'test.zip').is_file())

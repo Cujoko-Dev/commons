@@ -10,7 +10,7 @@ from appdirs import site_data_dir, user_data_dir
 import yaml
 import yodl
 
-__version__ = '1.2.0'
+__version__ = '1.2.1'
 
 
 class SettingsException(Exception):
@@ -40,6 +40,9 @@ def get_settings(file_name: str = 'settings.yaml', **kwargs) -> OrderedDict:
 
     with settings_file_path.open(encoding='utf-8') as settings_file:
         settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
+
+    if settings is None:
+        settings = OrderedDict()
 
     return settings
 
