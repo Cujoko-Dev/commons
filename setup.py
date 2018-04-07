@@ -22,5 +22,5 @@ setup(
         'Topic :: Utilities'
     ],
     keywords='commons',
-    license = 'MIT'
+    license='MIT'
 )
