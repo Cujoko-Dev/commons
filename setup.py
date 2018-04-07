@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup
+from setuptools import find_packages, setup
 
 import commons
 
@@ -7,10 +7,10 @@ setup(
     name='commons',
     version=commons.__version__,
     description='Commons',
-    url='https://github.com/Cujoko/commons',
     author='Cujoko',
     author_email='cujoko@gmail.com',
-    license='MIT',
+    url='https://github.com/Cujoko/commons',
+    packages=find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -22,5 +22,5 @@ setup(
         'Topic :: Utilities'
     ],
     keywords='commons',
-    py_modules=['commons']
+    license = 'MIT'
 )
