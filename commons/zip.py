@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-from pathlib import Path
-from typing import List
 import zipfile
 
 import time
 
 
-def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
+def extract_from_zip(zip_path, dir_path):
     with zipfile.ZipFile(str(zip_path)) as zip_file:
         for zip_member in zip_file.infolist():
             zip_file.extract(zip_member, str(dir_path))
@@ -15,7 +13,7 @@ def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
             os.utime(str(dir_path / zip_member.filename), (zip_member_time, zip_member_time))
 
 
-def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -> float:
+def write_to_zip(zip_path, in_path, file_paths=None):
     with zipfile.ZipFile(str(zip_path), 'w', zipfile.ZIP_DEFLATED) as zip_file:
         mtime = -1.
         if in_path.is_file():

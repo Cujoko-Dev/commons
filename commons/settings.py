@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 from pathlib import Path
-from typing import List
 
 from appdirs import site_data_dir, user_data_dir
 import yaml
@@ -12,7 +11,7 @@ class SettingsException(Exception):
     pass
 
 
-def get_settings(file_path: Path = Path('settings.yaml'), **kwargs) -> OrderedDict:
+def get_settings(file_path=Path('settings.yaml'), **kwargs):
     # Settings
     if not file_path.is_file():
         app_name = None
@@ -39,7 +38,7 @@ class OrderedDictMergeException(Exception):
     pass
 
 
-def merge(a: OrderedDict, b: OrderedDict, path: List[str] = None) -> OrderedDict:
+def merge(a, b, path=None):
     if path is None:
         path = []
     for key in b:
