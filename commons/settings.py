@@ -8,6 +8,7 @@ import yodl
 
 
 class SettingsException(Exception):
+    # todo Добавить описание
     pass
 
 
@@ -35,6 +36,7 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs):
 
 
 class OrderedDictMergeException(Exception):
+    # todo Добавить описание
     pass
 
 
