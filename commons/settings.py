@@ -7,9 +7,8 @@ import yaml
 import yodl
 
 
-class SettingsException(Exception):
-    # todo Добавить описание
-    pass
+class SettingsError(Exception):
+    """Settings Error"""
 
 
 def get_settings(file_path=Path('settings.yaml'), **kwargs):
@@ -19,7 +18,7 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs):
         if 'app_name' in kwargs:
             app_name = kwargs['app_name']
         if app_name is None:
-            raise AttributeError('Argument \'app_name\' does not exist!')
+            raise AttributeError('Argument \'app_name\' does not exist')
         app_author = None
         if 'app_author' in kwargs:
             app_author = kwargs['app_author']
@@ -27,7 +26,7 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs):
         if not file_path.is_file():
             file_path = Path(site_data_dir(app_name, app_author)) / file_path.name
             if not file_path.is_file():
-                raise SettingsException('Settings file does not exist!')
+                raise SettingsError('Settings file does not exist')
     with file_path.open(encoding='utf-8') as settings_file:
         settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
     if settings is None:

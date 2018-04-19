@@ -10,11 +10,11 @@ from commons.zip import extract_from_zip, write_to_zip
 
 class MainTestCase(unittest.TestCase):
     def test_get_settings_1(self):
-        with self.assertRaisesRegex(Exception, 'Settings file does not exist!'):
+        with self.assertRaisesRegex(Exception, 'Settings file does not exist'):
             get_settings(app_name='bla', app_author='bla')
 
     def test_get_settings_2(self):
-        with self.assertRaisesRegex(Exception, r'Argument \'app_name\' does not exist!'):
+        with self.assertRaisesRegex(Exception, r'Argument \'app_name\' does not exist'):
             get_settings(Path('bla.yaml'))
 
     def test_get_settings_3(self):
