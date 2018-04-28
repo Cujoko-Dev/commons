@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
+# noinspection PyCompatibility
 from pathlib import Path
 
 from appdirs import site_data_dir, user_data_dir
+from six import PY2
 import yaml
 import yodl
 
@@ -12,6 +14,12 @@ class SettingsError(Exception):
 
 
 def get_settings(file_path=Path('settings.yaml'), **kwargs):
+    if PY2:
+        def construct_yaml_str(loader, node):
+            return loader.construct_scalar(node).encode('utf-8')
+
+        yodl.OrderedDictYAMLLoader.add_constructor(u'tag:yaml.org,2002:str', construct_yaml_str)
+
     # Settings
     if not file_path.is_file():
         app_name = None
