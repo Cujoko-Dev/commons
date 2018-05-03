@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from collections import OrderedDict
-# noinspection PyCompatibility
-from pathlib import Path
 import tempfile
 import unittest
 
@@ -9,6 +9,7 @@ from six import assertRaisesRegex
 
 from commons.settings import OrderedDictMergeException, get_settings, merge
 from commons.zip import extract_from_zip, write_to_zip
+from compat import Path
 
 
 class MainTestCase(unittest.TestCase):

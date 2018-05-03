@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from collections import OrderedDict
-# noinspection PyCompatibility
-from pathlib import Path
 
 from appdirs import site_data_dir, user_data_dir
 from six import PY2
 import yaml
 import yodl
+
+from compat import Path
 
 
 class SettingsError(Exception):
