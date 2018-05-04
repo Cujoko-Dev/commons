@@ -8,7 +8,7 @@ from six import PY2
 import yaml
 import yodl
 
-from compat import Path
+from commons.compat import Path
 
 
 class SettingsError(Exception):

@@ -7,9 +7,9 @@ import unittest
 
 from six import assertRaisesRegex
 
+from commons.compat import Path
 from commons.settings import OrderedDictMergeException, get_settings, merge
 from commons.zip import extract_from_zip, write_to_zip
-from compat import Path
 
 
 class MainTestCase(unittest.TestCase):
