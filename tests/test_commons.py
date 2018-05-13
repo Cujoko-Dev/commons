@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from collections import OrderedDict
+import shutil
 import tempfile
 import unittest
 
@@ -48,19 +49,22 @@ class MainTestCase(unittest.TestCase):
         self.assertIsInstance(c, OrderedDict)
 
     def test_extract_from_zip(self):
-        with tempfile.TemporaryDirectory() as temp_dir_name:
-            temp_dir_path = Path(temp_dir_name)
-            extract_from_zip(Path('tests/data/test.zip'), temp_dir_path)
-            self.assertTrue(Path(temp_dir_name, 'test.txt').is_file())
+        temp_dir_name = tempfile.mkdtemp()
+        temp_dir_path = Path(temp_dir_name)
+        extract_from_zip(Path('tests/data/test.zip'), temp_dir_path)
+        self.assertTrue(Path(temp_dir_name, 'test.txt').is_file())
+        shutil.rmtree(str(temp_dir_path))
 
     def test_write_to_zip_1(self):
-        with tempfile.TemporaryDirectory() as temp_dir_name:
-            temp_dir_path = Path(temp_dir_name)
-            write_to_zip(temp_dir_path / 'test.zip', Path('tests/data/test.txt'))
-            self.assertTrue((temp_dir_path / 'test.zip').is_file())
+        temp_dir_name = tempfile.mkdtemp()
+        temp_dir_path = Path(temp_dir_name)
+        write_to_zip(temp_dir_path / 'test.zip', Path('tests/data/test.txt'))
+        self.assertTrue((temp_dir_path / 'test.zip').is_file())
+        shutil.rmtree(str(temp_dir_path))
 
     def test_write_to_zip_2(self):
-        with tempfile.TemporaryDirectory() as temp_dir_name:
-            temp_dir_path = Path(temp_dir_name)
-            write_to_zip(temp_dir_path / 'test.zip', Path('tests/data/test'))
-            self.assertTrue((temp_dir_path / 'test.zip').is_file())
+        temp_dir_name = tempfile.mkdtemp()
+        temp_dir_path = Path(temp_dir_name)
+        write_to_zip(temp_dir_path / 'test.zip', Path('tests/data/test'))
+        self.assertTrue((temp_dir_path / 'test.zip').is_file())
+        shutil.rmtree(str(temp_dir_path))

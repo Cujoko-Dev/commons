@@ -9,7 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/commons.egg-info" />
       <excludeFolder url="file://$MODULE_DIR$/tests/data" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (commons)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 2.7 (commons-py2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
