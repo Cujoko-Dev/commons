@@ -26,7 +26,7 @@ setup(
     license='MIT',
     install_requires=[
         'appdirs>=1.4.3',
-        'pathlib2>=2.3.2',
+        'pathlib>=1.0.1',
         'PyYAML>=3.12',
         'six>=1.11.0',
         'yodl>=1.0.0'

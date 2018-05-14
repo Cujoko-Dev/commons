@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from collections import OrderedDict
 
 from appdirs import site_data_dir, user_data_dir

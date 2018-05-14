@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 import os
-import zipfile
-
 import time
+import zipfile
 
 
 def extract_from_zip(zip_path, dir_path):
