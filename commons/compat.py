@@ -1,3 +1,11 @@
 # -*- coding: utf-8 -*-
-# noinspection PyCompatibility,PyUnresolvedReferences
-from pathlib import Path
+from __future__ import absolute_import, unicode_literals
+
+from six import PY2
+
+if PY2:
+    # noinspection PyUnresolvedReferences
+    from pathlib2 import Path
+else:
+    # noinspection PyUnresolvedReferences,PyCompatibility
+    from pathlib import Path

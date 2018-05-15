@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 from setuptools import find_packages, setup
 
 import commons
@@ -26,7 +28,7 @@ setup(
     license='MIT',
     install_requires=[
         'appdirs>=1.4.3',
-        'pathlib>=1.0.1',
+        'pathlib2>=2.3.2',
         'PyYAML==3.12',
         'six==1.11.0',
         'yodl>=1.0.0'
