@@ -27,8 +27,8 @@ setup(
     install_requires=[
         'appdirs>=1.4.3',
         'pathlib>=1.0.1',
-        'PyYAML>=3.12',
-        'six>=1.11.0',
+        'PyYAML==3.12',
+        'six==1.11.0',
         'yodl>=1.0.0'
     ]
 )
