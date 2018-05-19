@@ -2,20 +2,19 @@
 from __future__ import absolute_import, unicode_literals
 
 from collections import OrderedDict
+import os
 
 from appdirs import site_data_dir, user_data_dir
 from six import PY2
 import yaml
 import yodl
 
-from commons.compat import Path
-
 
 class SettingsError(Exception):
     """Settings Error"""
 
 
-def get_settings(file_path=Path('settings.yaml'), **kwargs):
+def get_settings(file_name='settings.yaml', **kwargs):
     if PY2:
         def construct_yaml_str(loader, node):
             return loader.construct_scalar(node).encode('utf-8')
@@ -23,7 +22,8 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs):
         yodl.OrderedDictYAMLLoader.add_constructor(u'tag:yaml.org,2002:str', construct_yaml_str)
 
     # Settings
-    if not file_path.is_file():
+    file_fullname = os.path.abspath(file_name)
+    if not os.path.isfile(file_fullname):
         app_name = None
         if 'app_name' in kwargs:
             app_name = kwargs['app_name']
@@ -32,12 +32,12 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs):
         app_author = None
         if 'app_author' in kwargs:
             app_author = kwargs['app_author']
-        file_path = Path(user_data_dir(app_name, app_author, roaming=True)) / file_path.name
-        if not file_path.is_file():
-            file_path = Path(site_data_dir(app_name, app_author)) / file_path.name
-            if not file_path.is_file():
+        file_fullname = os.path.join(user_data_dir(app_name, app_author, roaming=True), file_name)
+        if not os.path.isfile(file_fullname):
+            file_fullname = os.path.join(site_data_dir(app_name, app_author), file_name)
+            if not os.path.isfile(file_fullname):
                 raise SettingsError('Settings file does not exist')
-    with file_path.open(encoding='utf-8') as settings_file:
+    with open(file_fullname) as settings_file:
         settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
     if settings is None:
         settings = OrderedDict()
@@ -45,8 +45,7 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs):
 
 
 class OrderedDictMergeException(Exception):
-    # todo Добавить описание
-    pass
+    """Ordered Dict Merge Exception"""
 
 
 def merge(a, b, path=None):
