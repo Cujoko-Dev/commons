@@ -22,10 +22,13 @@ def write_to_zip(zip_name, in_name, file_names=None):
             mtime = os.stat(in_name).st_mtime
         elif os.path.isdir(in_name):
             if not file_names:
-                file_names = in_name.rglob('*')
+                file_names = []
+                for root, dirnames, filenames in os.walk(in_name):
+                    for filename in filenames:
+                        file_names.append(os.path.join(root, filename))
             for file_name in file_names:
                 if os.path.isfile(file_name):
-                    zip_file.write(file_name, os.path.relpath(file_name, in_name))
+                    zip_file.write(file_name, os.path.relpath(file_name.decode('cp1251').encode('utf-8'), in_name))
                     file_stat_result = os.stat(file_name)
                     if mtime < file_stat_result.st_mtime:
                         mtime = file_stat_result.st_mtime
