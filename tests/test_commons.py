@@ -9,6 +9,7 @@ import unittest
 
 from six import assertRaisesRegex
 
+from commons.compat import u
 from commons.settings import OrderedDictMergeException, get_settings, merge
 from commons.zip import extract_from_zip, write_to_zip
 
@@ -49,19 +50,19 @@ class MainTestCase(unittest.TestCase):
         self.assertIsInstance(c, OrderedDict)
 
     def test_extract_from_zip(self):
-        temp_dir_fullname = tempfile.mkdtemp()
+        temp_dir_fullname = u(tempfile.mkdtemp())
         extract_from_zip('tests/data/test.zip', temp_dir_fullname)
         self.assertTrue(os.path.isfile(os.path.join(temp_dir_fullname, 'test.txt')))
         shutil.rmtree(temp_dir_fullname)
 
     def test_write_to_zip_1(self):
-        temp_dir_fullname = tempfile.mkdtemp()
+        temp_dir_fullname = u(tempfile.mkdtemp())
         write_to_zip(os.path.join(temp_dir_fullname, 'test.zip'), 'tests/data/test.txt')
         self.assertTrue(os.path.isfile(os.path.join(temp_dir_fullname, 'test.zip')))
         shutil.rmtree(temp_dir_fullname)
 
     def test_write_to_zip_2(self):
-        temp_dir_fullname = tempfile.mkdtemp()
+        temp_dir_fullname = u(tempfile.mkdtemp())
         write_to_zip(os.path.join(temp_dir_fullname, 'test.zip'), 'tests/data/test')
         self.assertTrue(os.path.isfile(os.path.join(temp_dir_fullname, 'test.zip')))
         shutil.rmtree(temp_dir_fullname)

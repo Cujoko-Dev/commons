@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+import sys
 import time
 import zipfile
 
@@ -28,7 +29,7 @@ def write_to_zip(zip_name, in_name, file_names=None):
                         file_names.append(os.path.join(root, filename))
             for file_name in file_names:
                 if os.path.isfile(file_name):
-                    zip_file.write(file_name, os.path.relpath(file_name.decode('cp1251').encode('utf-8'), in_name))
+                    zip_file.write(file_name, os.path.relpath(file_name.decode(sys.getfilesystemencoding()), in_name))
                     file_stat_result = os.stat(file_name)
                     if mtime < file_stat_result.st_mtime:
                         mtime = file_stat_result.st_mtime
