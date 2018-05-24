@@ -6,7 +6,6 @@ from collections import OrderedDict
 import os
 
 from appdirs import site_data_dir, user_data_dir
-from six import PY2
 import yaml
 import yodl
 
@@ -16,12 +15,6 @@ class SettingsError(Exception):
 
 
 def get_settings(file_name='settings.yaml', **kwargs):
-    if PY2:
-        def construct_yaml_unicode(loader, node):
-            return loader.construct_scalar(node)
-
-        yodl.OrderedDictYAMLLoader.add_constructor(u'tag:yaml.org,2002:unicode', construct_yaml_unicode)
-
     # Settings
     file_fullname = os.path.abspath(file_name)
     if not os.path.isfile(file_fullname):
