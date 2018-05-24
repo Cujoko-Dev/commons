@@ -2,18 +2,33 @@
 from six import PY2
 
 
-def u(a):
-    if isinstance(a, str):
-        if PY2:
-            return a.decode('utf-8')
+def s(a, encoding='utf-8'):
+    if PY2:
+        if isinstance(a, unicode):
+            return a.encode(encoding)
+        elif isinstance(a, list):
+            a_ = []
+            for a_elem in a:
+                if isinstance(a_elem, unicode):
+                    a_.append(a_elem.encode(encoding))
+                else:
+                    a_.append(a_elem)
+            return a_
         else:
             return a
-    elif isinstance(a, list):
-        if PY2:
+    else:
+        return a
+
+
+def u(a, encoding='utf-8'):
+    if PY2:
+        if isinstance(a, str):
+            return a.decode(encoding)
+        elif isinstance(a, list):
             a_ = []
             for a_elem in a:
                 if isinstance(a_elem, str):
-                    a_.append(a_elem.decode('utf-8'))
+                    a_.append(a_elem.decode(encoding))
                 else:
                     a_.append(a_elem)
             return a_
