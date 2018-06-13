@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from six import PY2
 
+if PY2:
+    # noinspection PyUnresolvedReferences
+    from __builtin__ import long
+else:
+    # noinspection PyUnresolvedReferences
+    from builtins import int as long
+
 
 def s(a, encoding='utf-8'):
     if PY2:
