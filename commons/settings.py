@@ -29,11 +29,12 @@ def get_settings(file_name='settings.yaml', **kwargs):
         file_fullname = os.path.join(user_data_dir(app_name, app_author, roaming=True), file_name)
         if not os.path.isfile(file_fullname):
             file_fullname = os.path.join(site_data_dir(app_name, app_author), file_name)
-            if not os.path.isfile(file_fullname):
-                raise SettingsError('Settings file does not exist')
-    with codecs.open(file_fullname, encoding='utf-8') as settings_file:
-        settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
-    if settings is None:
+    if os.path.isfile(file_fullname):
+        with codecs.open(file_fullname, encoding='utf-8') as settings_file:
+            settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
+        if settings is None:
+            settings = OrderedDict()
+    else:
         settings = OrderedDict()
     return settings
 
