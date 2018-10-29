@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
+import codecs
+import os
 
 from setuptools import find_packages, setup
 
-import commons
+here = os.path.abspath(os.path.dirname(__file__))
+
+about = {}
+with codecs.open(os.path.join(here, 'commons', '__about__.py'), 'r', 'utf-8') as f:
+    exec (f.read(), about)
 
 setup(
     name='commons',
-    version=commons.__version__,
+    version=about['__version__'],
     description='Commons',
     author='Cujoko',
     author_email='cujoko@gmail.com',
