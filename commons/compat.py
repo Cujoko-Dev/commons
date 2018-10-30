@@ -16,10 +16,7 @@ def s(a, encoding='utf-8'):
         elif isinstance(a, list):
             a_ = []
             for a_elem in a:
-                if isinstance(a_elem, unicode):
-                    a_.append(a_elem.encode(encoding))
-                else:
-                    a_.append(a_elem)
+                a_.append(s(a_elem, encoding))
             return a_
         else:
             return a
@@ -34,10 +31,7 @@ def u(a, encoding='utf-8'):
         elif isinstance(a, list):
             a_ = []
             for a_elem in a:
-                if isinstance(a_elem, str):
-                    a_.append(a_elem.decode(encoding))
-                else:
-                    a_.append(a_elem)
+                a_.append(u(a_elem, encoding))
             return a_
         else:
             return a
