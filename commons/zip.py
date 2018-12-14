@@ -6,15 +6,17 @@ import sys
 import time
 import zipfile
 
-from commons.compat import u
+from commons.compat import s, u
 
 
 def extract_from_zip(zip_name, dir_name):
-    with zipfile.ZipFile(zip_name) as zip_file:
+    zip_name_ = s(zip_name, 'cp1251')
+    dir_name_ = s(dir_name, 'cp1251')
+    with zipfile.ZipFile(zip_name_) as zip_file:
         for zip_member in zip_file.infolist():
-            zip_file.extract(zip_member, dir_name)
+            zip_file.extract(zip_member, dir_name_)
             zip_member_time = time.mktime(zip_member.date_time + (0, 0, -1))
-            os.utime(os.path.join(dir_name, zip_member.filename), (zip_member_time, zip_member_time))
+            os.utime(os.path.join(dir_name_, zip_member.filename), (zip_member_time, zip_member_time))
 
 
 def write_to_zip(zip_name, in_name, file_names=None):
