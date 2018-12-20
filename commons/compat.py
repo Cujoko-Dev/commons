@@ -2,10 +2,10 @@
 from six import PY2
 
 if PY2:
-    # noinspection PyUnresolvedReferences
+    # noinspection PyUnresolvedReferences,PyCompatibility
     from __builtin__ import long
 else:
-    # noinspection PyUnresolvedReferences
+    # noinspection PyUnresolvedReferences,PyCompatibility,PyShadowingBuiltins
     from builtins import int as long
 
 
