@@ -1,40 +1,35 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 import os
-import sys
+from pathlib import Path
 import time
+from typing import List
 import zipfile
 
-from commons.compat import s, u
 
-
-def extract_from_zip(zip_name, dir_name):
-    zip_name_ = s(zip_name, 'cp1251')
-    dir_name_ = s(dir_name, 'cp1251')
-    with zipfile.ZipFile(zip_name_) as zip_file:
+def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
+    with zipfile.ZipFile(zip_path) as zip_file:
         for zip_member in zip_file.infolist():
-            zip_file.extract(zip_member, dir_name_)
+            zip_file.extract(zip_member, dir_path)
             zip_member_time = time.mktime(zip_member.date_time + (0, 0, -1))
-            os.utime(os.path.join(dir_name_, zip_member.filename), (zip_member_time, zip_member_time))
+            os.utime(Path(dir_path, zip_member.filename), (zip_member_time, zip_member_time))
 
 
-def write_to_zip(zip_name, in_name, file_names=None):
-    with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -> float:
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
         mtime = -1.
-        if os.path.isfile(in_name):
-            zip_file.write(in_name, os.path.basename(in_name))
-            mtime = os.stat(in_name).st_mtime
-        elif os.path.isdir(in_name):
-            if not file_names:
-                file_names = []
-                for root, dirnames, filenames in os.walk(in_name):
+        if in_path.is_file():
+            zip_file.write(in_path, in_path.name)
+            mtime = in_path.stat().st_mtime
+        elif in_path.is_dir():
+            if not file_paths:
+                file_paths = []
+                for root, dirnames, filenames in os.walk(str(in_path)):
                     for filename in filenames:
-                        file_names.append(os.path.join(root, filename))
-            for file_name in file_names:
-                if os.path.isfile(file_name):
-                    zip_file.write(file_name, os.path.relpath(u(file_name, sys.getfilesystemencoding()), in_name))
-                    file_stat_result = os.stat(file_name)
+                        file_paths.append(Path(root, filename))
+            for file_path in file_paths:
+                if file_path.is_file():
+                    zip_file.write(file_path, file_path.relative_to(in_path))
+                    file_stat_result = file_path.stat()  # todo
                     if mtime < file_stat_result.st_mtime:
                         mtime = file_stat_result.st_mtime
         return mtime

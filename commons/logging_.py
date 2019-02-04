@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 # noinspection PyUnresolvedReferences
 import logging
+from pathlib import Path
 
 
-def add_logging_arguments(parser):
+def add_logging_arguments(parser) -> None:
     parser.add_argument(
         '-l', '--level',
         nargs='?',
@@ -23,9 +22,9 @@ def add_logging_arguments(parser):
     )
 
 
-def add_loggers(args, main_logger):
+def add_loggers(args, main_logger: logging.Logger) -> None:
     # noinspection PyUnresolvedReferences
-    formatter = logging.Formatter(
+    formatter: logging.Formatter = logging.Formatter(
         '[%(asctime)s,%(msecs)03d][%(name)s:%(lineno)d][%(levelname)s] %(message)s',
         datefmt='%y-%m-%d %H:%M:%S')
     if args.level is not None:
@@ -37,12 +36,12 @@ def add_loggers(args, main_logger):
     if not isinstance(level_int, int):
         raise ValueError('Invalid log level \'{0}\''.format(level_str))
     # noinspection PyUnresolvedReferences
-    ch = logging.StreamHandler()
+    ch: logging.StreamHandler = logging.StreamHandler()
     ch.setLevel(level_int)
     ch.setFormatter(formatter)
     main_logger.addHandler(ch)
     if args.log_file is not None:
-        log_file_fullname = args.log_file
+        log_file_fullpath = Path(args.log_file)
         if args.log_file_level is not None:
             log_file_level_str = args.log_file_level
         else:
@@ -52,7 +51,7 @@ def add_loggers(args, main_logger):
         if not isinstance(log_file_level_int, int):
             raise ValueError('Invalid log file level \'{0}\''.format(log_file_level_str))
         # noinspection PyUnresolvedReferences
-        fh = logging.FileHandler(log_file_fullname)
+        fh: logging.FileHandler = logging.FileHandler(log_file_fullpath)
         fh.setLevel(log_file_level_int)
         fh.setFormatter(formatter)
         main_logger.addHandler(fh)
