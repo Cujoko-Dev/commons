@@ -24,14 +24,10 @@ def get_attribute(
             result = settings[settings_key]
             if not isinstance(result, type__):
                 raise TypeError('{0}'.format(settings_key) if settings_key else None)
-        else:
-            raise AttributeError('{0}'.format(settings_key))
-    else:
-        raise AttributeError('{0}'.format(kwargs_key))
     if result is None:
         result = default
     if result is None and not allow_none:
-        raise ValueError('{0}'.format(settings_key))
+        raise AttributeError('{0}'.format(settings_key))
     return result
 
 
@@ -39,6 +35,7 @@ def get_path_attribute(
         kwargs: dict, kwargs_key: str, settings: OrderedDict = None, settings_key: str = None,
         default_path: Path = None, is_dir: bool = True, check_if_exists: bool = True, create_dir: bool = True,
         create_parents: bool = True) -> Path:
+    result = None
     if kwargs_key in kwargs:
         result = kwargs[kwargs_key]
         if not isinstance(result, Path):
@@ -51,14 +48,10 @@ def get_path_attribute(
             result = Path(result_str)
             if not isinstance(result, Path):
                 raise TypeError('{0}'.format(settings_key) if settings_key else None)
-        else:
-            raise AttributeError('{0}'.format(settings_key))
-    else:
-        raise AttributeError('{0}'.format(kwargs_key))
     if result is None and isinstance(default_path, Path):
         result = default_path
     if result is None:
-        raise ValueError('{0}'.format(settings_key))
+        raise AttributeError('{0}'.format(settings_key))
     if result.exists():
         if not is_dir and result.is_dir():
             raise FileExistsError('{0} Not A File'.format(kwargs_key) if kwargs_key else None, result)
@@ -77,19 +70,13 @@ class SettingsError(Exception):
 
 
 def get_settings(file_path=Path('settings.yaml'), **kwargs) -> OrderedDict:
-    # Settings
     if not file_path.is_file():
-        app_name = kwargs.get('app_name', None)
-        if not isinstance(app_name, str):
-            raise AttributeError('Argument "app_name" Not Exists')
+        app_name = get_attribute(kwargs, 'app_name', allow_none=True)
+        app_author = get_attribute(kwargs, 'app_author', allow_none=True)
 
-        app_author = kwargs.get('app_author', None)
-        if not isinstance(app_author, str):
-            raise AttributeError('Argument "app_author" Not Exists')
-
-        file_path = Path(user_data_dir(app_name, app_author, roaming=True), file_path)
+        file_path = Path(user_data_dir(app_name, app_author, roaming=True), file_path.name)
         if not file_path.is_file():
-            file_path = Path(site_data_dir(app_name, app_author), file_path)
+            file_path = Path(site_data_dir(app_name, app_author), file_path.name)
 
     if file_path.is_file():
         with file_path.open(encoding='utf-8') as settings_file:
