@@ -17,12 +17,12 @@ def get_attribute(
         type__ = type(default)
     if kwargs_key in kwargs:
         result = kwargs[kwargs_key]
-        if not isinstance(result, type__):
+        if not isinstance(result, type__) and default is not None:
             raise TypeError('{0}'.format(kwargs_key) if kwargs_key else None)
     if settings is not None and settings_key is not None:
         if settings_key in settings:
             result = settings[settings_key]
-            if not isinstance(result, type__):
+            if not isinstance(result, type__) and default is not None:
                 raise TypeError('{0}'.format(settings_key) if settings_key else None)
     if result is None:
         result = default
