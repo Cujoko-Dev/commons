@@ -5,8 +5,8 @@ import shutil
 import tempfile
 import unittest
 
-from commons.settings import OrderedDictMergeException, get_settings, merge
-from commons.zip import extract_from_zip, write_to_zip
+from cjk_commons.settings import OrderedDictMergeException, get_settings, merge
+from cjk_commons.zip import extract_from_zip, write_to_zip
 
 
 class MainTestCase(unittest.TestCase):

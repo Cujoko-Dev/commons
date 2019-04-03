@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 here = Path(__file__).parent
 
 about = {}
-with Path(here, 'commons', '__about__.py').open() as f:
+with Path(here, 'cjk_commons', '__about__.py').open() as f:
     exec(f.read(), about)
 
 setup(
-    name='commons',
+    name='cjk-commons',
     version=about['__version__'],
     description='Commons',
     author='Cujoko',
     author_email='cujoko@gmail.com',
-    url='https://gitlab.com/Cujoko/commons',
-    packages=find_packages(),
+    url='https://github.com/Cujoko/commons',
+    packages=['cjk_commons'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
