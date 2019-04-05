@@ -1,12 +1,10 @@
 [tool.poetry]
 name = "cjk-commons"
-version = "3.3.2"
+version = "3.3.3"
 description = "Commons"
 authors = ["Cujoko <cujoko@gmail.com>"]
 license = "MIT"
-homepage = "https://github.com/Cujoko/commons"
 repository = "https://github.com/Cujoko/commons"
-documentation = "https://github.com/Cujoko/commons"
 keywords = ["commons"]
 classifiers=[
     "Development Status :: 4 - Beta",
