@@ -73,11 +73,9 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs) -> OrderedDict:
     if not file_path.is_file():
         app_name = get_attribute(kwargs, 'app_name', allow_none=True)
         app_author = get_attribute(kwargs, 'app_author', allow_none=True)
-
         file_path = Path(user_data_dir(app_name, app_author, roaming=True), file_path.name)
         if not file_path.is_file():
             file_path = Path(site_data_dir(app_name, app_author), file_path.name)
-
     if file_path.is_file():
         with file_path.open(encoding='utf-8') as settings_file:
             settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
@@ -85,7 +83,6 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs) -> OrderedDict:
             settings = OrderedDict()
     else:
         settings = OrderedDict()
-
     return settings
 
 

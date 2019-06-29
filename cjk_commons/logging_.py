@@ -24,7 +24,7 @@ def add_logging_arguments(parser) -> None:
 
 def add_loggers(args, main_logger: logging.Logger, log_file_name: str = '') -> None:
     # noinspection PyUnresolvedReferences
-    formatter: logging.Formatter = logging.Formatter(
+    formatter = logging.Formatter(
         '[%(asctime)s,%(msecs)03d][%(name)s:%(lineno)d][%(levelname)s] %(message)s',
         datefmt='%y-%m-%d %H:%M:%S')
     if args.level is not None:
@@ -36,7 +36,7 @@ def add_loggers(args, main_logger: logging.Logger, log_file_name: str = '') -> N
     if not isinstance(level_int, int):
         raise ValueError('Invalid log level \'{0}\''.format(level_str))
     # noinspection PyUnresolvedReferences
-    ch: logging.StreamHandler = logging.StreamHandler()
+    ch = logging.StreamHandler()
     ch.setLevel(level_int)
     ch.setFormatter(formatter)
     main_logger.addHandler(ch)
@@ -55,7 +55,7 @@ def add_loggers(args, main_logger: logging.Logger, log_file_name: str = '') -> N
         if not isinstance(log_file_level_int, int):
             raise ValueError('Invalid log file level \'{0}\''.format(log_file_level_str))
         # noinspection PyUnresolvedReferences
-        fh: logging.FileHandler = logging.FileHandler(log_file_path)
+        fh = logging.FileHandler(log_file_path)
         fh.setLevel(log_file_level_int)
         fh.setFormatter(formatter)
         main_logger.addHandler(fh)
