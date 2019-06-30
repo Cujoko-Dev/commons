@@ -5,6 +5,8 @@ import time
 from typing import List
 import zipfile
 
+from loguru import logger
+
 
 def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
     with zipfile.ZipFile(zip_path) as zip_file:
@@ -33,3 +35,6 @@ def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -
                     if mtime < file_stat_result.st_mtime:
                         mtime = file_stat_result.st_mtime
         return mtime
+
+
+logger.disable(__name__)

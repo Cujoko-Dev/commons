@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any
 
 from appdirs import site_data_dir, user_data_dir
+from loguru import logger
 import yaml
 import yodl
 
@@ -104,3 +105,6 @@ def merge(a: dict, b: dict, path=None) -> dict:
         else:
             a[key] = b[key]
     return a
+
+
+logger.disable(__name__)
