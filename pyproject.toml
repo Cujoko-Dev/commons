@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cjk-commons"
-version = "3.5.2"
+version = "3.5.3"
 description = "Commons"
 authors = ["Cujoko <cujoko@gmail.com>"]
 license = "MIT"
@@ -21,7 +21,7 @@ python = "^3.7"
 appdirs = "^1.4"
 PyYAML = "^5.1"
 yodl = "^1.0"
-loguru = "^0.4.0"
+loguru = "^0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.3"
