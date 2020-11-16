@@ -7,7 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/cjk_commons" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (commons)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (commons)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
