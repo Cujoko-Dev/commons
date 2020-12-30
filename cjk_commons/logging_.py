@@ -24,7 +24,7 @@ def add_logging_arguments(parser) -> None:
     )
 
 
-def add_loggers(args, logger: loguru._Logger, log_file_name: str = '') -> None:
+def add_loggers(args, logger: loguru.Logger, log_file_name: str = '') -> None:
     if args.level is not None:
         level_str = args.level
     else:
