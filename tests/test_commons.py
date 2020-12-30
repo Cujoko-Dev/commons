@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import OrderedDict
 from pathlib import Path
 
 import pytest
@@ -21,33 +20,27 @@ def test_get_settings_2():
 
 
 def test_get_settings_3():
-    assert isinstance(get_settings(Path('tests/data/settings.yaml')), OrderedDict)
+    assert isinstance(get_settings(Path('tests/data/settings.yaml')), dict)
 
 
 def test_merge_1():
-    a = OrderedDict()
-    a['a'] = 1
-    b = OrderedDict()
-    b['a'] = 1
-    assert isinstance(merge(a, b), OrderedDict)
+    a = {'a': 1}
+    b = {'a': 1}
+    assert isinstance(merge(a, b), dict)
 
 
 def test_merge_2():
-    a = OrderedDict()
-    a['a'] = 1
-    b = OrderedDict()
-    b['a'] = 2
+    a = {'a': 1}
+    b = {'a': 2}
     with pytest.raises(OrderedDictMergeException):
         merge(a, b)
 
 
 def test_merge_3():
-    a = OrderedDict()
-    a['b'] = OrderedDict([('a', 1)])
-    b = OrderedDict()
-    b['b'] = OrderedDict([('b', 2)])
+    a = {'b': {'a', 1}}
+    b = {'b': {'b', 2}}
     c = merge(a, b)
-    assert isinstance(c, OrderedDict)
+    assert isinstance(c, dict)
 
 
 def test_extract_from_zip(tmpdir):

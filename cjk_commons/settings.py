@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-from collections import OrderedDict
 from pathlib import Path
 from typing import Any
 
-from appdirs import site_data_dir, user_data_dir
-from loguru import logger
 import yaml
 import yodl
+from appdirs import site_data_dir, user_data_dir
+from loguru import logger
 
 
 def get_attribute(
-        kwargs: dict, kwargs_key: str, settings: OrderedDict = None, settings_key: str = None,
+        kwargs: dict, kwargs_key: str, settings: dict = None, settings_key: str = None,
         default: Any = None, type_: type = str, allow_none: bool = False) -> Any:
     result = None
     type__ = type_
@@ -33,7 +32,7 @@ def get_attribute(
 
 
 def get_path_attribute(
-        kwargs: dict, kwargs_key: str, settings: OrderedDict = None, settings_key: str = None,
+        kwargs: dict, kwargs_key: str, settings: dict = None, settings_key: str = None,
         default_path: Path = None, is_dir: bool = True, check_if_exists: bool = True, create_dir: bool = True,
         create_parents: bool = True) -> Path:
     result = None
@@ -70,7 +69,7 @@ class SettingsError(Exception):
     """Settings Error"""
 
 
-def get_settings(file_path=Path('settings.yaml'), **kwargs) -> OrderedDict:
+def get_settings(file_path=Path('settings.yaml'), **kwargs) -> dict:
     if not file_path.is_file():
         app_name = get_attribute(kwargs, 'app_name', allow_none=True)
         app_author = get_attribute(kwargs, 'app_author', allow_none=True)
@@ -81,9 +80,9 @@ def get_settings(file_path=Path('settings.yaml'), **kwargs) -> OrderedDict:
         with file_path.open(encoding='utf-8') as settings_file:
             settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
         if settings is None:
-            settings = OrderedDict()
+            settings = {}
     else:
-        settings = OrderedDict()
+        settings = {}
     return settings
 
 
