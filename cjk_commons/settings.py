@@ -18,16 +18,16 @@ def get_attribute(
     if kwargs_key in kwargs:
         result = kwargs[kwargs_key]
         if not isinstance(result, type__) and default is not None:
-            raise TypeError('{0}'.format(kwargs_key) if kwargs_key else None)
+            raise TypeError(f'{kwargs_key}' if kwargs_key else None)
     if settings is not None and settings_key is not None:
         if settings_key in settings:
             result = settings[settings_key]
             if not isinstance(result, type__) and default is not None:
-                raise TypeError('{0}'.format(settings_key) if settings_key else None)
+                raise TypeError(f'{settings_key}' if settings_key else None)
     if result is None:
         result = default
     if result is None and not allow_none:
-        raise AttributeError('{0}'.format(settings_key))
+        raise AttributeError(f'{settings_key}')
     return result
 
 
@@ -39,27 +39,27 @@ def get_path_attribute(
     if kwargs_key in kwargs:
         result = kwargs[kwargs_key]
         if not isinstance(result, Path):
-            raise TypeError('{0}'.format(kwargs_key) if kwargs_key else None)
+            raise TypeError(f'{kwargs_key}' if kwargs_key else None)
     elif settings is not None and settings_key is not None:
         if settings_key in settings:
             result_str = settings[settings_key]
             if not isinstance(result_str, str):
-                raise TypeError('{0}'.format(settings_key) if settings_key else None)
+                raise TypeError(f'{settings_key}' if settings_key else None)
             result = Path(result_str)
             if not isinstance(result, Path):
-                raise TypeError('{0}'.format(settings_key) if settings_key else None)
+                raise TypeError(f'{settings_key}' if settings_key else None)
     if result is None and isinstance(default_path, Path):
         result = default_path
     if result is None:
-        raise AttributeError('{0}'.format(settings_key))
+        raise AttributeError(f'{settings_key}')
     if result.exists():
         if not is_dir and result.is_dir():
-            raise FileExistsError('{0} Not A File'.format(kwargs_key) if kwargs_key else None, result)
+            raise FileExistsError(f'{kwargs_key} Not A File' if kwargs_key else None, result)
         elif is_dir and result.is_file():
-            raise NotADirectoryError('{0}'.format(kwargs_key) if kwargs_key else None, result)
+            raise NotADirectoryError(f'{kwargs_key}' if kwargs_key else None, result)
     else:
         if check_if_exists:
-            raise FileExistsError('{0}'.format(kwargs_key) if kwargs_key else None, result)
+            raise FileExistsError(f'{kwargs_key}' if kwargs_key else None, result)
         if is_dir and create_dir:
             result.mkdir(parents=create_parents)
     return result
@@ -100,7 +100,7 @@ def merge(a: dict, b: dict, path=None) -> dict:
             elif a[key] == b[key]:
                 pass
             else:
-                raise OrderedDictMergeException('Conflict at \'{0}\''.format('.'.join(path + [str(key)])))
+                raise OrderedDictMergeException(f'Conflict at \'{".".join(path + [str(key)])}\'')
         else:
             a[key] = b[key]
     return a

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
-from pathlib import Path
 import sys
+from pathlib import Path
 
 import loguru
 
@@ -32,7 +32,7 @@ def add_loggers(args, logger: loguru._Logger, log_file_name: str = '') -> None:
     level_str = level_str.upper()
     level_int = getattr(logging, level_str, None)
     if not isinstance(level_int, int):
-        raise ValueError('Invalid log level \'{0}\''.format(level_str))
+        raise ValueError(f'Invalid log level \'{level_str}\'')
     logger.remove()
     logger.add(sys.stderr, level=level_str)
     if args.log_file is not None:
@@ -48,5 +48,5 @@ def add_loggers(args, logger: loguru._Logger, log_file_name: str = '') -> None:
         log_file_level_str = log_file_level_str.upper()
         log_file_level_int = getattr(logging, log_file_level_str, None)
         if not isinstance(log_file_level_int, int):
-            raise ValueError('Invalid log file level \'{0}\''.format(log_file_level_str))
+            raise ValueError(f'Invalid log file level \'{log_file_level_str}\'')
         logger.add(log_file_path, level=log_file_level_str)
