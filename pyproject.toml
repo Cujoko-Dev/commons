@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "cjk-commons"
-version = "3.6.0"
+version = "3.6.1"
 description = "Commons"
 authors = ["Cujoko <cujoko@gmail.com>"]
 license = "MIT"
 repository = "https://github.com/Cujoko/commons"
 keywords = ["commons"]
 classifiers=[
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: Russian",
@@ -18,7 +18,7 @@ classifiers=[
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 appdirs = "*"
 PyYAML = "*"
 yodl = "*"
