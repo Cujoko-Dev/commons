@@ -1,13 +1,6 @@
 [tool.poetry]
-name = "cjk-commons"
-version = "3.6.2"
-description = "Commons"
 authors = ["Cujoko <cujoko@gmail.com>"]
-packages = [{include = "cjk_commons"}]
-license = "MIT"
-repository = "https://github.com/Cujoko/commons"
-keywords = ["commons"]
-classifiers=[
+classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -18,14 +11,21 @@ classifiers=[
     "Topic :: Software Development",
     "Topic :: Utilities"
 ]
+description = "Commons"
+keywords = ["commons"]
+license = "MIT"
+name = "cjk-commons"
+packages = [{include = "cjk_commons"}]
+readme = "README.md"
+repository = "https://github.com/Cujoko/commons"
+version = "3.6.2"
 
 [tool.poetry.dependencies]
-python = "^3.9"
 appdirs = "^1.4.4"
-PyYAML = "^6.0"
-yodl = "^1.0.0"
 loguru = "^0.6.0"
-
+python = "^3.9"
+pyyaml = "^6.0"
+yodl = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^2.16.2"
@@ -33,5 +33,5 @@ pytest = "^7.2.1"
 rope = "^1.7.0"
 
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
