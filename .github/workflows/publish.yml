@@ -28,4 +28,4 @@ jobs:
         poetry build
     - name: Publish package
       run: |
-        poetry publish --username ${{env.PYPI_USERNAME}} --password ${{secrets.PYPI_PASSWORD}}
+        poetry publish --username ${{vars.PYPI_USERNAME}} --password ${{secrets.PYPI_PASSWORD}}
