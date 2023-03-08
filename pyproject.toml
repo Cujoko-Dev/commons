@@ -1,5 +1,9 @@
-[tool.poetry]
-authors = ["Cujoko <cujoko@gmail.com>"]
+[tool.pdm]
+
+[project]
+authors = [
+    {name = "Cujoko", email = "cujoko@gmail.com"},
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -7,31 +11,22 @@ classifiers = [
     "Natural Language :: Russian",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.9",
     "Topic :: Software Development",
     "Topic :: Utilities"
 ]
+dependencies = [
+    "appdirs==1.4.4",
+    "loguru==0.6.0",
+    "pyyaml==6.0",
+    "yodl==1.0.0",
+]
 description = "Commons"
 keywords = ["commons"]
-license = "MIT"
+license = {text = "MIT"}
 name = "cjk-commons"
-packages = [{include = "cjk_commons"}]
 readme = "README.md"
-repository = "https://github.com/Cujoko/commons"
-version = "3.6.2"
+requires-python = ">=3.10"
+version = "3.6.3"
 
-[tool.poetry.dependencies]
-appdirs = "^1.4.4"
-loguru = "^0.6.0"
-python = "^3.9"
-pyyaml = "^6.0"
-yodl = "^1.0.0"
-
-[tool.poetry.group.dev.dependencies]
-pylint = "^2.16.2"
-pytest = "^7.2.1"
-rope = "^1.7.0"
-
-[build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core"]
+[tool.setuptools]
+py-modules = []
