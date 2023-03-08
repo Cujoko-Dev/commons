@@ -24,7 +24,7 @@ license = {text = "MIT"}
 name = "cjk-commons"
 readme = "README.md"
 requires-python = ">=3.10"
-version = "3.6.4"
+version = "3.6.5"
 
 [project.urls]
 repository = "https://github.com/Cujoko-Dev/commons"
@@ -32,4 +32,4 @@ repository = "https://github.com/Cujoko-Dev/commons"
 [tool.pdm]
 
 [tool.setuptools]
-py-modules = []
+packages = ['cjk_commons']
