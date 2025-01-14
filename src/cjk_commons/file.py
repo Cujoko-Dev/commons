@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
+
+"""Методы для работы с файлами"""
+
+
 from pathlib import Path
 
 
 def rename_bak_paths(path: Path, bakfix: str = "bak") -> None:
+    """Переименовать bak-каталог или bak-файл"""
+
     n = 1
 
     # Найдём самый большой n

@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+"""Методы для логирования"""
+
+
 import logging
 import sys
 from pathlib import Path
@@ -7,6 +11,8 @@ import loguru
 
 
 def add_logging_arguments(parser) -> None:
+    """Добавить аргументы для логирования"""
+
     parser.add_argument(
         "-l",
         "--level",
@@ -26,6 +32,8 @@ def add_logging_arguments(parser) -> None:
 
 
 def add_loggers(args, logger: loguru.logger, log_file_name: str = "") -> None:
+    """Добавить логеры"""
+
     if args.level is not None:
         level_str = args.level
     else:

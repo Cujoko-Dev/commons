@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+"""Методы для работы с настройками"""
+
+
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +21,8 @@ def get_attribute(
     type_: type = str,
     allow_none: bool = False,
 ) -> Any:
+    """Получить атрибут"""
+
     result = None
     type__ = type_
 
@@ -56,6 +62,8 @@ def get_path_attribute(
     create_dir: bool = True,
     create_parents: bool = True,
 ) -> Path:
+    """Получить Path-атрибут"""
+
     result = None
 
     if kwargs_key in kwargs:
@@ -105,6 +113,8 @@ class SettingsError(Exception):
 
 
 def get_settings(file_path=Path("settings.yaml"), **kwargs) -> dict:
+    """Получить настройки"""
+
     if not file_path.is_file():
         app_name = get_attribute(kwargs, "app_name", allow_none=True)
         app_author = get_attribute(kwargs, "app_author", allow_none=True)
@@ -131,6 +141,8 @@ class OrderedDictMergeException(Exception):
 
 
 def merge(a: dict, b: dict, path=None) -> dict:
+    """Слить словари"""
+
     if path is None:
         path = []
 

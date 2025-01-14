@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+"""Методы для работы с архивами"""
+
+
 import os
 import time
 import zipfile
@@ -9,6 +13,8 @@ from loguru import logger
 
 
 def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
+    """Извлечь из архива"""
+
     with zipfile.ZipFile(zip_path) as zip_file:
         for zip_member in zip_file.infolist():
             zip_file.extract(zip_member, dir_path)
@@ -19,6 +25,8 @@ def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
 
 
 def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -> float:
+    """Добавить в архив"""
+
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
         mtime = -1.0
 
@@ -29,7 +37,7 @@ def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -
             if not file_paths:
                 file_paths = []
 
-                for root, dirnames, filenames in os.walk(str(in_path)):
+                for root, _, filenames in os.walk(str(in_path)):
                     for filename in filenames:
                         file_paths.append(Path(root, filename))
 
