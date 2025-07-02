@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""Методы для работы с архивами"""
-
-
 import os
 import time
 import zipfile
@@ -24,7 +19,9 @@ def extract_from_zip(zip_path: Path, dir_path: Path) -> None:
             )
 
 
-def write_to_zip(zip_path: Path, in_path: Path, file_paths: List[Path] = None) -> float:
+def write_to_zip(
+    zip_path: Path, in_path: Path, file_paths: List[Path] | None = None
+) -> float:
     """Добавить в архив"""
 
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zip_file:

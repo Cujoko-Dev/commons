@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""Методы для логирования"""
-
-
 import logging
 import sys
 from pathlib import Path

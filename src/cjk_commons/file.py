@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""Методы для работы с файлами"""
-
-
 from pathlib import Path
 
 

@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""Методы для работы с настройками"""
-
-
 from pathlib import Path
 from typing import Any
 
@@ -15,8 +10,8 @@ from loguru import logger
 def get_attribute(
     kwargs: dict,
     kwargs_key: str,
-    settings: dict = None,
-    settings_key: str = None,
+    settings: dict | None = None,
+    settings_key: str | None = None,
     default: Any = None,
     type_: type = str,
     allow_none: bool = False,
@@ -54,9 +49,9 @@ def get_attribute(
 def get_path_attribute(
     kwargs: dict,
     kwargs_key: str,
-    settings: dict = None,
-    settings_key: str = None,
-    default_path: Path = None,
+    settings: dict | None = None,
+    settings_key: str | None = None,
+    default_path: Path | None = None,
     is_dir: bool = True,
     check_if_exists: bool = True,
     create_dir: bool = True,
