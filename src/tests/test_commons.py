@@ -10,14 +10,14 @@ def test_get_settings_1():
     with pytest.raises(Exception) as exc:
         get_settings(app_name="bla", app_author="bla")
 
-        assert e == "Settings file does not exist"
+        assert exc == "Settings file does not exist"
 
 
 def test_get_settings_2():
     with pytest.raises(Exception) as exc:
         get_settings(Path("bla.yaml"))
 
-        assert e == "Argument 'app_name' does not exist"
+        assert exc == "Argument 'app_name' does not exist"
 
 
 def test_get_settings_3():
