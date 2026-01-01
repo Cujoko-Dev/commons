@@ -31,3 +31,8 @@ version = "3.7.5"
 
 [project.urls]
 repository = "https://github.com/Cujoko-Dev/commons"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
