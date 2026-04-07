@@ -1,0 +1,41 @@
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
+
+[project]
+authors = [
+    {name = "Cujoko", email = "cujoko@gmail.com"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Russian",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "appdirs>=1.4.4",
+    "loguru>=0.6.0",
+    "pyyaml>=6.0",
+    "yodl>=1.0.0",
+]
+description = "Commons"
+keywords = ["commons"]
+license = {text = "MIT"}
+name = "cjk-commons"
+requires-python = ">=3.10"
+version = "0.1.0"
+
+[project.urls]
+repository = "https://github.com/Cujoko-Dev/commons"
+
+[tool.pdm.scripts]
+test = "pytest"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+testpaths = ["tests"]
