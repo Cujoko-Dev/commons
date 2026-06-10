@@ -1,4 +1,3 @@
-import logging
 import sys
 from pathlib import Path
 
@@ -35,10 +34,11 @@ def add_loggers(args, logger: "loguru.Logger", log_file_name: str = "") -> None:
         level_str = "INFO"
 
     level_str = level_str.upper()
-    level_int = getattr(logging, level_str, None)
 
-    if not isinstance(level_int, int):
-        raise ValueError(f"Invalid log level '{level_str}'")
+    try:
+        logger.level(level_str)
+    except ValueError as exc:
+        raise ValueError(f"Invalid log level '{level_str}'") from exc
 
     logger.remove()
 
@@ -59,9 +59,10 @@ def add_loggers(args, logger: "loguru.Logger", log_file_name: str = "") -> None:
             log_file_level_str = "INFO"
 
         log_file_level_str = log_file_level_str.upper()
-        log_file_level_int = getattr(logging, log_file_level_str, None)
 
-        if not isinstance(log_file_level_int, int):
-            raise ValueError(f"Invalid log file level '{log_file_level_str}'")
+        try:
+            logger.level(log_file_level_str)
+        except ValueError as exc:
+            raise ValueError(f"Invalid log file level '{log_file_level_str}'") from exc
 
         logger.add(log_file_path, level=log_file_level_str)
