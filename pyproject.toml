@@ -1,3 +1,7 @@
+[build-system]
+build-backend = "pdm.backend"
+requires = ["pdm-backend"]
+
 [project]
 authors = [
     {name = "Cujoko", email = "cujoko@gmail.com"},
@@ -18,12 +22,17 @@ dependencies = [
     "yodl>=1.0.0",
 ]
 description = "Commons"
+dynamic = ["version"]
 keywords = ["commons"]
 license = {text = "MIT"}
 name = "cjk-commons"
 readme = "README.md"
 requires-python = ">=3.10"
-version = "3.8.5"
 
 [project.urls]
 repository = "https://github.com/Cujoko-Dev/commons"
+
+[tool.pdm.version]
+path = "src/cjk_commons/_version.py"
+pattern = '^__version__\s*=\s*"([^"]+)"'
+source = "file"

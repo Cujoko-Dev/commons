@@ -1,3 +1,7 @@
+[build-system]
+build-backend = "pdm.backend"
+requires = ["pdm-backend"]
+
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
@@ -23,11 +27,11 @@ dependencies = [
     "yodl>=1.0.0",
 ]
 description = "Commons"
+dynamic = ["version"]
 keywords = ["commons"]
 license = {text = "MIT"}
 name = "cjk-commons"
 requires-python = ">=3.10"
-version = "0.1.0"
 
 [project.urls]
 repository = "https://github.com/Cujoko-Dev/commons"
@@ -37,3 +41,8 @@ package-dir = "../src"
 
 [tool.pdm.scripts]
 test = { cmd = "pytest", working_dir = ".." }
+
+[tool.pdm.version]
+path = "../src/cjk_commons/_version.py"
+pattern = '^__version__\s*=\s*"([^"]+)"'
+source = "file"

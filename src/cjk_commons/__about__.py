@@ -1,3 +1,1 @@
-import importlib.metadata
-
-__version__ = importlib.metadata.version(str(__package__))
+from cjk_commons._version import __version__
