@@ -1,3 +1,8 @@
+# Secrets and local config
+.env
+.env.*
+!.env.sample
+
 # Python local artifacts
 __pycache__/
 *.py[cod]
@@ -34,7 +39,8 @@ htmlcov/
 cover/
 
 # Local config, logs, and OS files
-.env
 *.log
 Thumbs.db
 .DS_Store
+
+.notes
