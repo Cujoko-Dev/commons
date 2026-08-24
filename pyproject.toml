@@ -30,7 +30,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 [project.urls]
-repository = "https://github.com/Cujoko-Dev/commons"
+repository = "https://github.com/cujoko-dev/commons"
 
 [tool.pdm.version]
 path = "src/cjk_commons/_version.py"
