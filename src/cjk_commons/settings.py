@@ -3,7 +3,7 @@ from typing import Any
 
 import yaml
 import yodl
-from appdirs import site_data_dir, user_data_dir
+from appdirs import user_data_dir
 from loguru import logger
 
 
@@ -114,11 +114,8 @@ def get_settings(file_path=Path("settings.yaml"), **kwargs) -> dict:
         app_name = get_attribute(kwargs, "app_name", allow_none=True)
         app_author = get_attribute(kwargs, "app_author", allow_none=True)
         file_path = Path(
-            user_data_dir(app_name, app_author, roaming=True), file_path.name
+            user_data_dir(app_name, app_author, roaming=False), file_path.name
         )
-
-        if not file_path.is_file():
-            file_path = Path(site_data_dir(app_name, app_author), file_path.name)
     if file_path.is_file():
         with file_path.open(encoding="utf-8") as settings_file:
             settings = yaml.load(settings_file, yodl.OrderedDictYAMLLoader)
